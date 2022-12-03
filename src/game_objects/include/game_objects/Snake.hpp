@@ -2,6 +2,8 @@
 
 #include "ISnake.hpp"
 
+#include "board/Coordinates.hpp"
+
 namespace game_objects
 {
 

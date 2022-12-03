@@ -9,7 +9,7 @@ Snake::Snake()
     , direction_{board::Direction::LEFT}
 {}
 
-board::Coordinates Snake::getPosition() const
+board::Coordinates& Snake::getPosition() const
 {
     return position_;
 }

@@ -1,8 +1,7 @@
-project(snake-game_objects)
+project(snake-game)
 
 set(SOURCES
-    Fruit.cpp
-    Snake.cpp
+    Game.cpp
 )
 
 add_library(${PROJECT_NAME} OBJECT)
@@ -11,5 +10,4 @@ target_include_directories(${PROJECT_NAME} PUBLIC include)
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
-        snake-board
 )

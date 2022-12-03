@@ -15,15 +15,15 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(
-  hello_test
+  snake_test
   SnakeTests.cpp
 )
 target_link_libraries(
-    hello_test
+    snake_test
     GTest::gtest_main
     snake-board
     snake-game_objects
 )
 
 include(GoogleTest)
-gtest_discover_tests(hello_test)
+gtest_discover_tests(snake_test)
