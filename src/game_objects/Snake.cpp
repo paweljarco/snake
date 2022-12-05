@@ -9,7 +9,7 @@ Snake::Snake()
     , direction_{board::Direction::LEFT}
 {}
 
-board::Coordinates& Snake::getPosition() const
+board::Coordinates& Snake::getPosition()
 {
     return position_;
 }
@@ -17,13 +17,13 @@ board::Coordinates& Snake::getPosition() const
 void Snake::move()
 {
     if (direction_ == board::Direction::LEFT)
-        position_.x -= board::STEP;
+        position_.x -= board::BOX_SIZE;
     if (direction_ == board::Direction::UP)
-        position_.y += board::STEP;
+        position_.y += board::BOX_SIZE;
     if (direction_ == board::Direction::RIGHT)
-        position_.x += board::STEP;
+        position_.x += board::BOX_SIZE;
     if (direction_ == board::Direction::DOWN)
-        position_.y -= board::STEP;
+        position_.y -= board::BOX_SIZE;
 }
 
 void Snake::turnClockwise()

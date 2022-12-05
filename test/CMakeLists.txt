@@ -16,12 +16,14 @@ enable_testing()
 
 add_executable(
   snake_test
-  SnakeTests.cpp
+    GameTests.cpp
+    SnakeTests.cpp
 )
 target_link_libraries(
     snake_test
     GTest::gtest_main
     snake-board
+    snake-game
     snake-game_objects
 )
 

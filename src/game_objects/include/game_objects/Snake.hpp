@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ISnake.hpp"
+#include "game_objects/ISnake.hpp"
 
 #include "board/Coordinates.hpp"
 
@@ -11,7 +11,7 @@ class Snake : public ISnake {
 public:
     Snake();
     ~Snake() = default;
-    board::Coordinates getPosition() const override;
+    board::Coordinates& getPosition() override;
     void move() override;
     void turnClockwise() override;
     void turnCounterClockwise() override;

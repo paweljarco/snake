@@ -6,6 +6,6 @@ namespace board
 {
 
 constexpr Coordinates BEGINNING_POSITION {100,100};
-constexpr int STEP {1};
+constexpr int BOX_SIZE {20};
 
 } // namespace board

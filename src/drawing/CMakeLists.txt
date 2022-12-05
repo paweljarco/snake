@@ -1,9 +1,9 @@
-project(snake-game_objects)
+project(snake-drawing_handler)
+
+find_package(Qt6 REQUIRED COMPONENTS Gui)
 
 set(SOURCES
-    Fruit.cpp
-    Snake.cpp
-    Tail.cpp
+    DrawingHandler.cpp
 )
 
 add_library(${PROJECT_NAME} OBJECT)
@@ -12,5 +12,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC include)
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
-        snake-board
+        Qt6::Gui
+        Qt6::Widgets
 )

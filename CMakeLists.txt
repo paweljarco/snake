@@ -49,7 +49,11 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(snake PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(snake
+    PRIVATE
+        Qt${QT_VERSION_MAJOR}::Widgets
+        snake-drawing_handler
+)
 
 set_target_properties(snake PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
