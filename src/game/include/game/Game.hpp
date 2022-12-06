@@ -22,7 +22,7 @@ public:
     bool checkForSnakeObjectCollision() override;
 
 private:
-
+    void createTail();
 
     std::unique_ptr<game_objects::Snake> snake_;
     std::list<game_objects::IObjectPtr> tailsList_;

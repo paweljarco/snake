@@ -17,13 +17,13 @@ board::Coordinates& Snake::getPosition()
 void Snake::move()
 {
     if (direction_ == board::Direction::LEFT)
-        position_.x -= board::BOX_SIZE;
+        position_.decreaseX(board::BOX_SIZE);
     if (direction_ == board::Direction::UP)
-        position_.y += board::BOX_SIZE;
+        position_.increaseY(board::BOX_SIZE);
     if (direction_ == board::Direction::RIGHT)
-        position_.x += board::BOX_SIZE;
+        position_.increaseX(board::BOX_SIZE);
     if (direction_ == board::Direction::DOWN)
-        position_.y -= board::BOX_SIZE;
+        position_.decreaseY(board::BOX_SIZE);
 }
 
 void Snake::turnClockwise()

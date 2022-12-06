@@ -11,6 +11,7 @@ namespace game
 Game::Game()
 {
     snake_ = std::make_unique<game_objects::Snake>();
+    createTail();
 
 }
 bool Game::checkForSnakeObjectCollision()
@@ -20,5 +21,12 @@ bool Game::checkForSnakeObjectCollision()
     }) != tailsList_.end();
 }
 
+void Game::createTail()
+{
+    for (int i = 1; i <= 5; i++)
+    {
+        game_objects::Tail::create()
+    }
+}
 
 } // namespace game

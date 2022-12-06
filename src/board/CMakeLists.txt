@@ -1,7 +1,7 @@
 project(snake-board)
 
 set(SOURCES
-    Dummy.cpp
+    Coordinates.cpp
 )
 
 add_library(${PROJECT_NAME} OBJECT)

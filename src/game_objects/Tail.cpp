@@ -2,9 +2,14 @@
 
 namespace game_objects
 {
-Tail::Tail(const board::Coordinates& coords, unsigned int lifeSan)
+std::unique_ptr<Tail> Tail::create(const board::Coordinates& coords, unsigned int lifeSpan)
+{
+    return std::make_unique<Tail>(coords, lifeSpan);
+}
+
+Tail::Tail(const board::Coordinates& coords, unsigned int lifeSpan)
     : position_(coords)
-    , lifeSpan_(lifeSan)
+    , lifeSpan_(lifeSpan)
 {}
 
 board::Coordinates& Tail::getPosition()

@@ -5,7 +5,7 @@
 namespace board
 {
 
-constexpr Coordinates BEGINNING_POSITION {100,100};
+const Coordinates BEGINNING_POSITION {100,100};
 constexpr int BOX_SIZE {20};
 
 } // namespace board

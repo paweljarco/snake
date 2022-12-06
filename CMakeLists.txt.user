@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 9.0.0, 2022-12-05T21:50:40. -->
+<!-- Written by QtCreator 9.0.0, 2022-12-06T22:23:13. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -69,6 +69,8 @@
     <value type="bool" key="AutoTest.Framework.QtTest">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="AutoTest.CheckStates">
+    <value type="Qt::CheckState" key="1@D:/programowanie/snake/test/CoordinatesTests.cpp:CoordinatesTests">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/programowanie/snake/test/CoordinatesTests.cpp:ShouldAdd20ToXCoord">Checked</value>
     <value type="Qt::CheckState" key="1@D:/programowanie/snake/test/GameTests.cpp:GameTests">Checked</value>
     <value type="Qt::CheckState" key="1@D:/programowanie/snake/test/GameTests.cpp:ShouldReturnFalseWhenSnakeIsNotOverTail">Checked</value>
     <value type="Qt::CheckState" key="1@D:/programowanie/snake/test/SnakeTests.cpp:After3TimesTurnRightAndMoveShouldSubstractStepFromYCoords">Checked</value>
