@@ -2,9 +2,14 @@
 
 #include <algorithm>
 
+#include "board/ConstBoardValues.hpp"
 #include "game_objects/Tail.hpp"
 #include "game_objects/Snake.hpp"
 
+namespace
+{
+constexpr int MAX_LIFE = 6;
+}
 
 namespace game
 {
@@ -16,7 +21,7 @@ Game::Game()
 }
 bool Game::checkForSnakeObjectCollision()
 {
-    return std::find_if(tailsList_.begin(), tailsList_.end(), [coords(&snake_->getPosition())](const auto& tail) {
+    return std::find_if(tailsList_.begin(), tailsList_.end(), [coords(snake_->getPosition())](auto& tail) {
         return tail->getPosition() == coords;
     }) != tailsList_.end();
 }
@@ -25,7 +30,7 @@ void Game::createTail()
 {
     for (int i = 1; i <= 5; i++)
     {
-        game_objects::Tail::create()
+        tailsList_.emplace_back(game_objects::Tail::create(snake_->getPosition().getCoordsIncreaseX(i * board::BOX_SIZE), MAX_LIFE - i));
     }
 }
 

@@ -10,12 +10,11 @@ public:
 
     uint32_t getX() const;
     uint32_t getY() const;
-    void increaseX(uint32_t value);
-    void increaseY(uint32_t value);
-    void decreaseX(uint32_t value);
-    void decreaseY(uint32_t value);
+    Coordinates getCoordsIncreaseX(uint32_t value) const;
+    Coordinates getCoordsIncreaseY(uint32_t value) const;
+    Coordinates getCoordsDecreaseX(uint32_t value) const;
+    Coordinates getCoordsDecreaseY(uint32_t value) const;
     bool operator==(const Coordinates& rhs);
-    bool operator==(Coordinates& rhs);
 
 
 private:

@@ -17,32 +17,27 @@ uint32_t Coordinates::getY() const
     return y_;
 }
 
-void Coordinates::increaseX(uint32_t value)
+Coordinates Coordinates::getCoordsIncreaseX(uint32_t value) const
 {
-    x_+= value;
+    return Coordinates(x_ + value, y_);
 }
 
-void Coordinates::increaseY(uint32_t value)
+Coordinates Coordinates::getCoordsIncreaseY(uint32_t value) const
 {
-    y_+= value;
+    return Coordinates(x_, y_ + value);
 }
 
-void Coordinates::decreaseX(uint32_t value)
+Coordinates Coordinates::getCoordsDecreaseX(uint32_t value) const
 {
-    x_-= value;
+    return Coordinates(x_ - value, y_);
 }
 
-void Coordinates::decreaseY(uint32_t value)
+Coordinates Coordinates::getCoordsDecreaseY(uint32_t value) const
 {
-    y_-= value;
+    return Coordinates(x_, y_ - value);
 }
 
 bool Coordinates::operator==(const Coordinates& rhs)
-{
-    return x_ == rhs.getX() && y_ == rhs.getY();
-}
-
-bool Coordinates::operator==(Coordinates& rhs)
 {
     return x_ == rhs.getX() && y_ == rhs.getY();
 }
