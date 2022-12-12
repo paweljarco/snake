@@ -12,7 +12,7 @@ Tail::Tail(const board::Coordinates& coords, unsigned int lifeSpan)
     , lifeSpan_(lifeSpan)
 {}
 
-board::Coordinates& Tail::getPosition()
+board::Coordinates Tail::getPosition()
 {
     return position_;
 }

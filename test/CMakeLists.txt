@@ -16,7 +16,6 @@ enable_testing()
 
 add_executable(
   snake_test
-    CoordinatesTests.cpp
     GameTests.cpp
     SnakeTests.cpp
 )

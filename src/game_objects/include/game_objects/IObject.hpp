@@ -15,7 +15,7 @@ class IObject
 {
 public:
     virtual ~IObject() = default;
-    virtual board::Coordinates& getPosition() = 0;
+    virtual board::Coordinates getPosition() = 0;
     virtual bool isAlive() = 0;
     virtual void trimLife() = 0;
 };

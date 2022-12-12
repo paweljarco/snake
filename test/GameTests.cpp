@@ -2,6 +2,9 @@
 
 #include <gtest/gtest.h>
 
+#include "game_objects/Fruit.hpp"
+#include "game_objects/Snake.hpp"
+
 struct GameTests : public ::testing::Test
 {
     void SetUp()

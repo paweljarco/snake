@@ -2,6 +2,7 @@
 
 #include <algorithm>
 
+#include "board/ConstBoardValues.hpp"
 #include "game_objects/Tail.hpp"
 #include "game_objects/Snake.hpp"
 
@@ -16,16 +17,18 @@ Game::Game()
 }
 bool Game::checkForSnakeObjectCollision()
 {
-    return std::find_if(tailsList_.begin(), tailsList_.end(), [coords(&snake_->getPosition())](const auto& tail) {
+    return std::find_if(tailsList_.begin(), tailsList_.end(), [coords(snake_->getPosition())](const auto& tail) {
         return tail->getPosition() == coords;
     }) != tailsList_.end();
 }
 
 void Game::createTail()
 {
-    for (int i = 1; i <= 5; i++)
+    auto initialPosition = snake_->getPosition();
+    for (auto i = 5; i >= 5; i--)
     {
-        game_objects::Tail::create()
+        initialPosition.x_ - board::BOX_SIZE;
+        game_objects::Tail::create(initialPosition, i);
     }
 }
 

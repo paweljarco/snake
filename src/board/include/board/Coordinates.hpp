@@ -3,22 +3,11 @@
 #include <cstdint>
 
 namespace board {
-class  Coordinates {
-public:
+struct Coordinates {
     Coordinates(uint32_t x, uint32_t y);
     ~Coordinates() = default;
 
-    uint32_t getX() const;
-    uint32_t getY() const;
-    void increaseX(uint32_t value);
-    void increaseY(uint32_t value);
-    void decreaseX(uint32_t value);
-    void decreaseY(uint32_t value);
     bool operator==(const Coordinates& rhs);
-    bool operator==(Coordinates& rhs);
-
-
-private:
     uint32_t x_;
     uint32_t y_;
 };

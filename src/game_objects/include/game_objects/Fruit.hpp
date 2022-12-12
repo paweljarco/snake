@@ -13,7 +13,7 @@ class Fruit : public IObject
 public:
     static std::unique_ptr<IObject> create(const board::Coordinates& coords);
     Fruit(const board::Coordinates& coords);
-    board::Coordinates& getPosition() override;
+    board::Coordinates getPosition() override;
     bool isAlive() override;
     void trimLife() override;
 
