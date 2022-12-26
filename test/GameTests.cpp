@@ -15,7 +15,13 @@ struct GameTests : public ::testing::Test
     std::unique_ptr<game::IGame> sut_;
 };
 
-TEST_F(GameTests, ShouldReturnFalseWhenSnakeIsNotOverTail)
+TEST_F(GameTests, ShouldReturnTrueWhenSnakeIsNotOverTail)
 {
-    EXPECT_FALSE(sut_->checkForSnakeObjectCollision());
+    EXPECT_TRUE(sut_->isRunning());
+}
+
+TEST_F(GameTests, ShouldBiteHisTailAfterTurningRight3TimeInRow)
+{
+
+    EXPECT_FALSE(sut_->isRunning());
 }

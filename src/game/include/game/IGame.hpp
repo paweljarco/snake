@@ -6,6 +6,7 @@ class IGame
 {
 public:
     virtual ~IGame() = default;
-    virtual bool checkForSnakeObjectCollision() = 0;
+    virtual void move() = 0;
+    virtual bool isRunning() = 0;
 };
 } // namespace game

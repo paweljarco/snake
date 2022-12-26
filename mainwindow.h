@@ -15,7 +15,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private:
+    virtual void paintEvent(QPaintEvent *event);
+
+private:    
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

@@ -19,13 +19,19 @@ class Game : public IGame
 public:
     Game();
     ~Game() = default;
-    bool checkForSnakeObjectCollision() override;
+    void move() override;
+    bool isRunning() override;
 
 private:
     void createTail();
+    bool isSnakeBittingHisTail();
+    void gameOver();
+    void moveSnake();
+    void trimTailsLifeSpan();
 
     std::unique_ptr<game_objects::Snake> snake_;
     std::list<game_objects::IObjectPtr> tailsList_;
+    bool isRunning_;
 
 };
 

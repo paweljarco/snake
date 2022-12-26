@@ -1,14 +1,14 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "drawing/DrawingHandler.hpp"
+#include <QPaintEngine>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    auto drawing = std::make_unique<drawing::DrawingHandler>(parent);
-    drawing->start();
+
 }
 
 MainWindow::~MainWindow()
@@ -16,3 +16,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);
+    painter.drawRect(QRect(80, 120, 100, 150));
+}
