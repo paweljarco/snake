@@ -19,8 +19,11 @@ class Game : public IGame
 public:
     Game();
     ~Game() = default;
+    void newGame() override;
     void move() override;
     bool isRunning() override;
+    const board::Coordinates& getSnakePosition() override;
+    const std::list<game_objects::IObjectPtr>& getTails() override;
 
 private:
     void createTail();

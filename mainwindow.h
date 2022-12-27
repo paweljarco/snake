@@ -1,7 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "qpainter.h"
 #include <QMainWindow>
+
+namespace game {
+class Game;
+}  // game
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,9 +20,20 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    virtual void paintEvent(QPaintEvent *event);
 
-private:    
+protected:
+    virtual void paintEvent(QPaintEvent *event);
+    virtual void timerEvent(QTimerEvent *event);
+
+
+private slots:
+    void on_actionNew_game_triggered();
+
+private:
     Ui::MainWindow *ui;
+    std::unique_ptr<game::Game> game_;
+    std::unique_ptr<QPainter> painter_;
+    bool gameOn;
+    int timerId;
 };
 #endif // MAINWINDOW_H

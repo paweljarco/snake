@@ -52,7 +52,10 @@ endif()
 target_link_libraries(snake
     PRIVATE
         Qt${QT_VERSION_MAJOR}::Widgets
+        snake-board
         snake-drawing_handler
+        snake-game
+        snake-game_objects
 )
 
 set_target_properties(snake PROPERTIES

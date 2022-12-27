@@ -10,12 +10,15 @@
 namespace game
 {
 Game::Game()
+{}
+
+void Game::newGame()
 {
     snake_ = std::make_unique<game_objects::Snake>();
     createTail();
     isRunning_= true;
-
 }
+
 bool Game::isSnakeBittingHisTail()
 {
     return std::find_if(tailsList_.begin(), tailsList_.end(), [coords(snake_->getPosition())](const auto& tail) {
@@ -26,9 +29,9 @@ bool Game::isSnakeBittingHisTail()
 void Game::createTail()
 {
     auto initialPosition = snake_->getPosition();
-    for (auto i = 5; i >= 5; i--)
+    for (auto i = 5; i >= 1; i--)
     {
-        initialPosition.x_ -= board::BOX_SIZE;
+        initialPosition.x_ += board::BOX_SIZE;
         tailsList_.push_back(game_objects::Tail::create(initialPosition, i));
     }
 }
@@ -40,6 +43,7 @@ void Game::move()
         gameOver();
     }
 
+    trimTailsLifeSpan();
     moveSnake();
 }
 
@@ -60,6 +64,7 @@ void Game::gameOver()
     isRunning_ = false;
 }
 
+
 bool Game::isRunning()
 {
     return isRunning_;
@@ -72,5 +77,16 @@ void Game::trimTailsLifeSpan()
         tail->trimLife();
     }
 }
+
+const board::Coordinates& Game::getSnakePosition()
+{
+    return snake_->getPosition();
+}
+
+const std::list<game_objects::IObjectPtr>& Game::getTails()
+{
+    return tailsList_;
+}
+
 
 } // namespace game
