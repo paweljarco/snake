@@ -1,9 +1,6 @@
 #pragma once
 
-namespace board
-{
-class Coordinates;
-} // namespace board
+#include "board/Coordinates.hpp"
 
 class ISnake {
 public:
@@ -11,7 +8,7 @@ public:
 
     virtual board::Coordinates& getPosition() = 0;
     virtual void move() = 0;
-    virtual void turnClockwise() = 0;
-    virtual void turnCounterClockwise() = 0;
+    virtual board::Direction getDirection() = 0;
+    virtual void setDirection(board::Direction direction) = 0;
 };
 

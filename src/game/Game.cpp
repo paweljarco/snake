@@ -55,15 +55,14 @@ void Game::moveSnake()
     }
     auto newTailLifeSpan = tailsList_.size() + 1;
     tailsList_.push_front(game_objects::Tail::create(snake_->getPosition(), newTailLifeSpan));
-    snake_->turnClockwise(); // to be modify
     snake_->move();
 }
 
 void Game::gameOver()
 {
     isRunning_ = false;
+    snake_.reset();
 }
-
 
 bool Game::isRunning()
 {
@@ -88,5 +87,72 @@ const std::list<game_objects::IObjectPtr>& Game::getTails()
     return tailsList_;
 }
 
+void Game::turn(board::Direction direction)
+{
+    switch (direction) {
+    case board::Direction::DOWN:
+        turnDownHandler();
+        break;
+    case board::Direction::UP:
+        turnUpHandler();
+        break;
+    case board::Direction::LEFT:
+        turnLeftHandler();
+        break;
+    case board::Direction::RIGHT:
+        turnRightHandler();
+        break;
+    default:
+        return;
+    }
+}
+
+void Game::turnUpHandler()
+{
+    switch (snake_->getDirection()) {
+    case board::Direction::LEFT:
+    case board::Direction::RIGHT:
+        snake_->setDirection(board::Direction::UP);
+        break;
+    default:
+        return;
+    }
+}
+
+void Game::turnDownHandler()
+{
+    switch (snake_->getDirection()) {
+    case board::Direction::LEFT:
+    case board::Direction::RIGHT:
+        snake_->setDirection(board::Direction::DOWN);
+        break;
+    default:
+        return;
+    }
+}
+
+void Game::turnRightHandler()
+{
+    switch (snake_->getDirection()) {
+    case board::Direction::UP:
+    case board::Direction::DOWN:
+        snake_->setDirection(board::Direction::RIGHT);
+        break;
+    default:
+        return;
+    }
+}
+
+void Game::turnLeftHandler()
+{
+    switch (snake_->getDirection()) {
+    case board::Direction::UP:
+    case board::Direction::DOWN:
+        snake_->setDirection(board::Direction::LEFT);
+        break;
+    default:
+        return;
+    }
+}
 
 } // namespace game

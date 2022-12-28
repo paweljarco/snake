@@ -14,9 +14,9 @@ struct Coordinates {
 
 enum  Direction {
     LEFT = 0,
-    UP = 1,
+    DOWN = 1,
     RIGHT = 2,
-    DOWN = 3
+    UP = 3
 };
 
 }  // namespace board

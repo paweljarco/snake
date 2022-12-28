@@ -13,8 +13,8 @@ public:
     ~Snake() = default;
     board::Coordinates& getPosition() override;
     void move() override;
-    void turnClockwise() override;
-    void turnCounterClockwise() override;
+    board::Direction getDirection() override;
+    void setDirection(board::Direction direction) override;
 
 private:
     board::Coordinates position_;

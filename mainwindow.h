@@ -24,6 +24,7 @@ public:
 protected:
     virtual void paintEvent(QPaintEvent *event);
     virtual void timerEvent(QTimerEvent *event);
+    virtual void keyPressEvent(QKeyEvent *event);
 
 
 private slots:

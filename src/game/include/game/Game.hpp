@@ -24,6 +24,7 @@ public:
     bool isRunning() override;
     const board::Coordinates& getSnakePosition() override;
     const std::list<game_objects::IObjectPtr>& getTails() override;
+    void turn(board::Direction direction) override;
 
 private:
     void createTail();
@@ -31,6 +32,10 @@ private:
     void gameOver();
     void moveSnake();
     void trimTailsLifeSpan();
+    void turnUpHandler();
+    void turnDownHandler();
+    void turnLeftHandler();
+    void turnRightHandler();
 
     std::unique_ptr<game_objects::Snake> snake_;
     std::list<game_objects::IObjectPtr> tailsList_;

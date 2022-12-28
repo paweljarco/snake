@@ -19,21 +19,21 @@ void Snake::move()
     if (direction_ == board::Direction::LEFT)
         position_.x_ -= board::BOX_SIZE;
     if (direction_ == board::Direction::UP)
-        position_.y_ += board::BOX_SIZE;
+        position_.y_ -= board::BOX_SIZE;
     if (direction_ == board::Direction::RIGHT)
         position_.x_ += board::BOX_SIZE;
     if (direction_ == board::Direction::DOWN)
-        position_.y_ -= board::BOX_SIZE;
+        position_.y_ += board::BOX_SIZE;
 }
 
-void Snake::turnClockwise()
+board::Direction Snake::getDirection()
 {
-    direction_ = static_cast<board::Direction>((static_cast<int>(direction_) + 1 + 4) % 4);
+    return direction_;
 }
 
-void Snake::turnCounterClockwise()
+void Snake::setDirection(board::Direction direction)
 {
-    direction_= static_cast<board::Direction>((static_cast<int>(direction_) - 1 + 4) % 4);
+    direction_ = direction;
 }
 
 } // namespace game_objects
