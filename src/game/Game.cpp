@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include "board/ConstBoardValues.hpp"
+#include "game_objects/Fruit.hpp"
 #include "game_objects/Tail.hpp"
 #include "game_objects/Snake.hpp"
 
@@ -10,10 +11,17 @@
 namespace game
 {
 Game::Game()
+    : fruitXPosGenerator_(0, (board::BOARD_WIDTH - board::BOX_SIZE) / board::BOX_SIZE)
+    , fruitYPosGenerator_(0, (board::BOARD_HEIGHT - board::BOX_SIZE) / board::BOX_SIZE)
 {}
 
 void Game::newGame()
 {
+    if (snake_)
+    {
+        snake_.reset();
+        tailsList_.clear();
+    }
     snake_ = std::make_unique<game_objects::Snake>();
     createTail();
     isRunning_= true;
@@ -24,6 +32,19 @@ bool Game::isSnakeBittingHisTail()
     return std::find_if(tailsList_.begin(), tailsList_.end(), [coords(snake_->getPosition())](const auto& tail) {
         return tail->getPosition() == coords;
     }) != tailsList_.end();
+}
+
+bool Game::isSnakeOutsideBoard()
+{
+    auto posX = snake_->getPosition().x_;
+    auto posY = snake_->getPosition().y_;
+
+    if (posX < 0 || posX > board::BOARD_WIDTH - board::BOX_SIZE
+            || posY < 0 || posY > board::BOARD_HEIGHT - board::BOX_SIZE)
+    {
+        return true;
+    }
+    return false;
 }
 
 void Game::createTail()
@@ -38,13 +59,15 @@ void Game::createTail()
 
 void Game::move()
 {
-    if (isSnakeBittingHisTail())
+
+        trimTailsLifeSpan();
+    moveSnake();
+    if (isSnakeBittingHisTail() || isSnakeOutsideBoard())
     {
         gameOver();
+        return;
     }
 
-    trimTailsLifeSpan();
-    moveSnake();
 }
 
 void Game::moveSnake()
@@ -61,7 +84,6 @@ void Game::moveSnake()
 void Game::gameOver()
 {
     isRunning_ = false;
-    snake_.reset();
 }
 
 bool Game::isRunning()
@@ -82,7 +104,7 @@ const board::Coordinates& Game::getSnakePosition()
     return snake_->getPosition();
 }
 
-const std::list<game_objects::IObjectPtr>& Game::getTails()
+const std::list<game_objects::TailPtr>& Game::getTails()
 {
     return tailsList_;
 }
@@ -153,6 +175,25 @@ void Game::turnLeftHandler()
     default:
         return;
     }
+}
+
+void Game::spawnFruit()
+{
+    if (!fruit_)
+    {
+        auto posX = fruitXPosGenerator_.generate() * board::BOX_SIZE;
+        auto posY = fruitYPosGenerator_.generate() * board::BOX_SIZE;
+        fruit_ = game_objects::Fruit::create({posX, posY});
+    }
+}
+
+std::optional<board::Coordinates> Game::getFruitPosition()
+{
+    if (!fruit_)
+    {
+        return std::nullopt;
+    }
+    return fruit_->getPosition();
 }
 
 } // namespace game

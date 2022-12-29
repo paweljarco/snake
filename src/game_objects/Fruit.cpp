@@ -4,7 +4,13 @@ namespace game_objects
 {
 Fruit::Fruit(const board::Coordinates& coords)
     : position_{coords}
+    , lifeSpan_{20}
 {}
+
+std::unique_ptr<Fruit> create(const board::Coordinates coords)
+{
+    return std::make_unique<Fruit>(coords);
+}
 
 board::Coordinates Fruit::getPosition(){
     return position_;

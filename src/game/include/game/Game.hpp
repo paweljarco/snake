@@ -2,14 +2,12 @@
 
 #include "IGame.hpp"
 
-#include <memory>
-#include <list>
+#include <QRandomGenerator>
 
 namespace game_objects
 {
-class IObject;
+class Fruit;
 class Snake;
-using IObjectPtr = std::unique_ptr<IObject>;
 } // namespace game_objects
 
 namespace game
@@ -23,12 +21,14 @@ public:
     void move() override;
     bool isRunning() override;
     const board::Coordinates& getSnakePosition() override;
-    const std::list<game_objects::IObjectPtr>& getTails() override;
+    const std::list<game_objects::TailPtr>& getTails() override;
     void turn(board::Direction direction) override;
+    std::optional<board::Coordinates> getFruitPosition() override;
 
 private:
     void createTail();
     bool isSnakeBittingHisTail();
+    bool isSnakeOutsideBoard();
     void gameOver();
     void moveSnake();
     void trimTailsLifeSpan();
@@ -36,10 +36,14 @@ private:
     void turnDownHandler();
     void turnLeftHandler();
     void turnRightHandler();
+    void spawnFruit();
 
     std::unique_ptr<game_objects::Snake> snake_;
-    std::list<game_objects::IObjectPtr> tailsList_;
+    std::list<game_objects::TailPtr> tailsList_;
     bool isRunning_;
+    std::unique_ptr<game_objects::Fruit> fruit_;
+    QRandomGenerator fruitXPosGenerator_;
+    QRandomGenerator fruitYPosGenerator_;
 
 };
 

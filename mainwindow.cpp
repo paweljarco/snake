@@ -1,13 +1,12 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "board/ConstBoardValues.hpp"
-#include "drawing/DrawingHandler.hpp"
 #include "game/Game.hpp"
 #include "game_objects/Snake.hpp"
-#include "game_objects/IObject.hpp"
 #include <QPaintEngine>
 #include <QTimer>
 #include <QKeyEvent>
+#include <QRandomGenerator>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -48,19 +47,20 @@ void MainWindow::on_actionNew_game_triggered()
 {
     game_->newGame();
     gameOn = true;
-    timerId = startTimer(1000);
+    timerId = startTimer(500);
     update();
 }
 
 void MainWindow::timerEvent(QTimerEvent *event)
 {
+    game_->move();
+
     if (!game_->isRunning())
     {
         killTimer(timerId);
         gameOn = false;
         return;
     }
-    game_->move();
     update();
 }
 

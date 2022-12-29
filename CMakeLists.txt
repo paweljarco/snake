@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 set(TS_FILES snake_pl_PL.ts)
 
@@ -56,6 +57,7 @@ target_link_libraries(snake
         snake-drawing_handler
         snake-game
         snake-game_objects
+        Qt6::Core
 )
 
 set_target_properties(snake PROPERTIES
