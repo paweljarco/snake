@@ -4,6 +4,8 @@
 
 #include "game_objects/Fruit.hpp"
 #include "game_objects/Snake.hpp"
+#include "game_objects/Tail.hpp"
+
 
 struct GameTests : public ::testing::Test
 {

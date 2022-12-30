@@ -2,7 +2,7 @@
 
 #include "IGame.hpp"
 
-#include <QRandomGenerator>
+#include <random>
 
 namespace game_objects
 {
@@ -37,14 +37,12 @@ private:
     void turnLeftHandler();
     void turnRightHandler();
     void spawnFruit();
+    bool isSnakeEatingFruit();
 
     std::unique_ptr<game_objects::Snake> snake_;
     std::list<game_objects::TailPtr> tailsList_;
     bool isRunning_;
     std::unique_ptr<game_objects::Fruit> fruit_;
-    QRandomGenerator fruitXPosGenerator_;
-    QRandomGenerator fruitYPosGenerator_;
-
 };
 
 } // namespace game

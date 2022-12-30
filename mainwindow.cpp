@@ -2,7 +2,9 @@
 #include "./ui_mainwindow.h"
 #include "board/ConstBoardValues.hpp"
 #include "game/Game.hpp"
+#include "game_objects/Fruit.hpp"
 #include "game_objects/Snake.hpp"
+#include "game_objects/Tail.hpp"
 #include <QPaintEngine>
 #include <QTimer>
 #include <QKeyEvent>
@@ -39,6 +41,12 @@ void MainWindow::paintEvent(QPaintEvent *event)
     auto& tailsList = game_->getTails();
     for (auto& tail : tailsList){
         painter.drawRect(QRect(tail->getPosition().x_, tail->getPosition().y_, board::BOX_SIZE, board::BOX_SIZE));
+    }
+
+    if (game_->getFruitPosition())
+    {
+        auto pos = game_->getFruitPosition().value();
+        painter.drawRect(QRect(pos.x_, pos.y_, board::BOX_SIZE, board::BOX_SIZE));
     }
 }
 

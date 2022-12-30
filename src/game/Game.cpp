@@ -8,11 +8,12 @@
 #include "game_objects/Snake.hpp"
 
 
+const auto MAX_X_RAND_VALUE = (board::BOARD_WIDTH - board::BOX_SIZE) / board::BOX_SIZE;
+const auto MAX_Y_RAND_VALUE = (board::BOARD_HEIGHT - board::BOX_SIZE) / board::BOX_SIZE;
+
 namespace game
 {
 Game::Game()
-    : fruitXPosGenerator_(0, (board::BOARD_WIDTH - board::BOX_SIZE) / board::BOX_SIZE)
-    , fruitYPosGenerator_(0, (board::BOARD_HEIGHT - board::BOX_SIZE) / board::BOX_SIZE)
 {}
 
 void Game::newGame()
@@ -59,8 +60,15 @@ void Game::createTail()
 
 void Game::move()
 {
-
+    spawnFruit();
+    if (!isSnakeEatingFruit())
+    {
         trimTailsLifeSpan();
+        fruit_->trimLife();
+    } else
+    {
+        fruit_.reset();
+    }
     moveSnake();
     if (isSnakeBittingHisTail() || isSnakeOutsideBoard())
     {
@@ -181,9 +189,10 @@ void Game::spawnFruit()
 {
     if (!fruit_)
     {
-        auto posX = fruitXPosGenerator_.generate() * board::BOX_SIZE;
-        auto posY = fruitYPosGenerator_.generate() * board::BOX_SIZE;
-        fruit_ = game_objects::Fruit::create({posX, posY});
+        board::Coordinates coords {
+            (std::rand()/((RAND_MAX + 1u) / MAX_X_RAND_VALUE)) * board::BOX_SIZE,
+            (std::rand()/((RAND_MAX + 1u) / MAX_Y_RAND_VALUE)) * board::BOX_SIZE};
+        fruit_ = std::make_unique<game_objects::Fruit>(coords);
     }
 }
 
@@ -195,5 +204,12 @@ std::optional<board::Coordinates> Game::getFruitPosition()
     }
     return fruit_->getPosition();
 }
+
+bool Game::isSnakeEatingFruit()
+{
+    if (!fruit_) return false;
+    return fruit_->getPosition() == snake_->getPosition();
+}
+
 
 } // namespace game

@@ -2,12 +2,12 @@
 
 namespace game_objects
 {
-Fruit::Fruit(const board::Coordinates& coords)
+Fruit::Fruit(board::Coordinates& coords)
     : position_{coords}
     , lifeSpan_{20}
 {}
 
-std::unique_ptr<Fruit> create(const board::Coordinates coords)
+std::unique_ptr<Fruit> create(board::Coordinates coords)
 {
     return std::make_unique<Fruit>(coords);
 }

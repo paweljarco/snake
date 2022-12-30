@@ -12,8 +12,8 @@ namespace game_objects
 class Fruit : public IObject
 {
 public:
-    static std::unique_ptr<Fruit> create(const board::Coordinates coords);
-    Fruit(const board::Coordinates& coords);
+    static std::unique_ptr<Fruit> create(board::Coordinates coords);
+    Fruit(board::Coordinates& coords);
     board::Coordinates getPosition() override;
     bool isAlive() override;
     void trimLife() override;
